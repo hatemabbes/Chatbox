@@ -1,9 +1,9 @@
 import React from 'react'
 
-function Message() {
+function Message({message}) {
     return (
         <div>
-            Hello from Message
+            {message}
         </div>
     )
 }
