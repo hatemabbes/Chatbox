@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component, Fragment, createRef } from 'react'
 import './App.css';
 import Formulaire from './components/Formulaire';
 import Message from './components/Message';
@@ -7,6 +7,11 @@ class App extends Component {
   state = {
     pseudo: this.props.match.params.pseudo,
     messages: {}
+  }
+  messagesRef = createRef()
+  componentDidUpdate () {
+    const ref = this.messagesRef.current
+    ref.scrollTop = ref.scrollHeight
   }
   addMessage = message => {
     const messages = { ...this.state.messages }
@@ -29,7 +34,7 @@ class App extends Component {
       <Fragment>
         <div className="box">
           <div>
-            <div className="messages">
+            <div className="messages" ref={this.messagesRef}>
               <div className="message">
                 {messagesList}
               </div>
