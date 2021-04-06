@@ -2,6 +2,7 @@ import React, { Component, Fragment, createRef } from 'react'
 import './App.css';
 import Formulaire from './components/Formulaire';
 import Message from './components/Message';
+import base from './base'
 
 class App extends Component {
   state = {
@@ -9,6 +10,12 @@ class App extends Component {
     messages: {}
   }
   messagesRef = createRef()
+  componentDidMount () {
+    base.syncState('/', {
+      context : this,
+      state : 'messages'
+    })
+  }
   componentDidUpdate () {
     const ref = this.messagesRef.current
     ref.scrollTop = ref.scrollHeight
