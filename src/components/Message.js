@@ -1,10 +1,17 @@
 import React from 'react'
 
-function Message({message}) {
+function Message({message, pseudo, isUser}) {
+    if ( isUser(pseudo) )
     return (
-        <div>
+        <p className="user-message">
             {message}
-        </div>
-    )
+        </p>
+    ) 
+    else 
+    return (
+        <p className="not-user-message">
+               <strong> {pseudo} : </strong>{message}
+            </p>
+    ) 
 }
 export default Message

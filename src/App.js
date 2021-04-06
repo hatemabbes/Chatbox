@@ -14,14 +14,24 @@ class App extends Component {
     messages[`message-${Date.now()}`] = message
     this.setState({ messages })
   }
+  isUser = pseudo => this.state.pseudo === pseudo
   render() {
+    const messagesList = 
+    Object.keys(this.state.messages)
+    .map(key => 
+      <Message 
+      key={key} 
+      isUser={this.isUser} 
+      pseudo={this.state.messages[key].pseudo} 
+      message={this.state.messages[key].message} />
+      )
     return (
       <Fragment>
         <div className="box">
           <div>
             <div className="messages">
               <div className="message">
-                <Message />
+                {messagesList}
               </div>
             </div>
           </div>
